@@ -1,5 +1,21 @@
 # ShadowKey
 
+```
+  ██████  ██░ ██  ▄▄▄      ▓█████▄  ▒█████   █     █░ ██ ▄█▀▓█████▓██   ██▓
+▒██    ▒ ▓██░ ██▒▒████▄    ▒██▀ ██▌▒██▒  ██▒▓█░ █ ░█░ ██▄█▒ ▓█   ▀ ▒██  ██▒
+░ ▓██▄   ▒██▀▀██░▒██  ▀█▄  ░██   █▌▒██░  ██▒▒█░ █ ░█ ▓███▄░ ▒███    ▒██ ██░
+  ▒   ██▒░▓█ ░██ ░██▄▄▄▄██ ░▓█▄   ▌▒██   ██░░█░ █ ░█ ▓██ █▄ ▒▓█  ▄  ░ ▐██▓░
+▒██████▒▒░▓█▒░██▓ ▓█   ▓██▒░▒████▓ ░ ████▓▒░░░██▒██▓ ▒██▒ █▄░▒████▒ ░ ██▒▓░
+▒ ▒▓▒ ▒ ░ ▒ ░░▒░▒ ▒▒   ▓▒█░ ▒▒▓  ▒ ░ ▒░▒░▒░ ░ ▓░▒ ▒  ▒ ▒▒ ▓▒░░ ▒░ ░  ██▒▒▒ 
+░ ░▒  ░ ░ ▒ ░▒░ ░  ▒   ▒▒ ░ ░ ▒  ▒   ░ ▒ ▒░   ▒ ░ ░  ░ ░▒ ▒░ ░ ░  ░▓██ ░▒░ 
+░  ░  ░   ░  ░░ ░  ░   ▒    ░ ░  ░ ░ ░ ░ ▒    ░   ░  ░ ░░ ░    ░   ▒ ▒ ░░  
+      ░   ░  ░  ░      ░  ░   ░        ░ ░      ░      ░  ░      ░  ░ ░     
+                            ░                                         ░ ░     
+        [ Advanced Keylogger with Military-Grade Encryption ]
+        [ For Educational Purposes Only | Version 1.0.0    ]
+        [ Created by Shubham Kumar                      ]
+```
+
 ⚠️ **Educational Purpose Only: This project demonstrates cybersecurity concepts and should not be used without explicit permission.**
 
 ## Overview
