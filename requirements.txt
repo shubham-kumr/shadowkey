@@ -1,0 +1,7 @@
+pynput
+cryptography
+Pillow
+sounddevice
+scipy
+requests
+pywin32; platform_system == "Windows"
