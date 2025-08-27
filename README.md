@@ -20,52 +20,57 @@
 
 ## Overview
 
-ShadowKey is a proof-of-concept tool demonstrating cybersecurity principles and encryption techniques. It showcases secure data handling, encryption methods, and system monitoring in a controlled environment.
+ShadowKey is an advanced cybersecurity tool that demonstrates modern encryption techniques, secure system monitoring, and real-time notifications through Discord webhooks. It serves as an educational platform for understanding cybersecurity concepts and secure communications.
 
-## Quick Setup
+## 🚀 Quick Setup
 
 1. **Requirements**
-   - Python 3.x
-   - Required packages: `pynput`, `cryptography`, `pillow`, `sounddevice`, `scipy`, `requests`
-   - For Windows users: `pywin32`
+   ```bash
+   pip install -r requirements.txt
+   ```
+   Required packages:
+   - pynput (keyboard monitoring)
+   - cryptography (encryption)
+   - pillow (screenshots)
+   - sounddevice (audio)
+   - scipy (audio processing)
+   - requests (Discord communication)
 
-2. **Installation**
-```bash
-git clone https://github.com/NikhilPrabhat00/shadowkey.git
-cd shadowkey
-pip install -r requirements.txt
-```
+2. **Configuration**
+   - Create a Discord webhook in your server
+   - Update `WEBHOOK_URL` in `ShadowKey.py`
+   - Customize monitoring parameters if needed
 
-3. **Configuration**
-   - Configure email settings in `ShadowKey.py`
-   - Generate encryption key
-   - Adjust timing parameters if needed
+3. **Usage**
+   ```bash
+   python3 ShadowKey.py  # Start monitoring
+   ```
 
-4. **Usage**
-```bash
-python ShadowKey.py        # Start monitoring
-python Cryptography/DecryptFile.py  # Decrypt collected data
-```
+   To decrypt collected data:
+   ```bash
+   cd Cryptography
+   python3 DecryptFile.py
+   ```
 
-## Core Features & Security
-
-- Military-grade encryption (Fernet symmetric encryption)
-- Secure data collection and handling
-- Automated data cleanup
-- Email reporting system
-- Separate encryption/decryption components
-
-## Educational Value
+## 📚 Educational Components
 
 Perfect for learning:
-- Python programming
-- Cryptography basics
-- System monitoring
-- Network communication
+- Advanced Python programming
+- Modern cryptography implementation
+- System monitoring techniques
+- Discord webhook integration
+- Secure file handling
+- Error handling and logging
+- Cross-platform development
 
-## License & Contributing
 
-This project is for educational purposes only. Contributions focused on educational value and security improvements are welcome via issues or pull requests.
+## ⚖️ License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+## 📢 Disclaimer
+
+This tool is developed strictly for educational and research purposes. Always obtain explicit permission before monitoring any system or network. The author is not responsible for any misuse or damage caused by this program.
 
 ---
-⚡ Created by [Shubham Kumar](https://github.com/NikhilPrabhat00)
+Created with 💻 by [Shubham Kumar](https://github.com/shubham-kumr)

